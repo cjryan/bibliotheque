@@ -1,6 +1,6 @@
 class LogsController < ApplicationController
   def index
-    @logs = []
+    @log_list = []
     data_dir = ENV['OPENSHIFT_DATA_DIR']
     log_dir = data_dir + "/log_repository"
     dir_listing = Dir.entries(log_dir)
@@ -8,8 +8,8 @@ class LogsController < ApplicationController
       #ignore current and previous dirs
       next if folder == "."
       next if folder == ".."
-      @logs << folder
-      return @logs
+      @log_list << folder
+      return @log_list
     end
   end
 end
