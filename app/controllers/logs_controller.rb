@@ -9,7 +9,7 @@ class LogsController < ApplicationController
       next if folder == "."
       next if folder == ".."
       @log_list << folder
-      return @log_list
     end
+    return @log_list
   end
 end
