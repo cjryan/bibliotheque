@@ -14,8 +14,6 @@ class RunsController < ApplicationController
 
   # GET /runs/new
   def new
-    @brokertypes = Brokertype.all
-    @rhcbranches = Rhcbranch.all
 
     @run = Run.new
   end
@@ -27,6 +25,7 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
+    @images = ["1", "2"]
     @run = Run.new(run_params)
 
     respond_to do |format|
@@ -43,6 +42,7 @@ class RunsController < ApplicationController
   # PATCH/PUT /runs/1
   # PATCH/PUT /runs/1.json
   def update
+    @images = ["1", "2"]
     respond_to do |format|
       if @run.update(run_params)
         format.html { redirect_to @run, notice: 'Run was successfully updated.' }

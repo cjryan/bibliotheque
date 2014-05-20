@@ -60,6 +60,15 @@
     <%= f.label :accounts_per_job %><br>
     <%= f.number_field :accounts_per_job %>
   </div>
+  <div class="field">
+    <%= f.label "Docker server" %><br>
+    <%= f.collection_select(:docker_url, Dockerserver.all, :id, :url, include_blank: false) %>
+  </div>
+  <div class="field">
+    <%= f.label "Docker image" %><br>
+    <%= f.text_field :image_url %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

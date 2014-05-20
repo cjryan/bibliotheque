@@ -11,13 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520132858) do
+ActiveRecord::Schema.define(version: 20140520150726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "brokertypes", force: true do |t|
     t.string   "brokertype"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dockerservers", force: true do |t|
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,21 +48,23 @@ ActiveRecord::Schema.define(version: 20140520132858) do
     t.datetime "updated_at"
   end
 
-  create_table "runs", force: true do |t|
-    t.string   "broker"
-    t.string   "testrun_id"
-    t.string   "caserun_ids",      default: [], array: true
-    t.string   "accounts",         default: [], array: true
-    t.integer  "job_count"
-    t.integer  "max_gears"
-    t.boolean  "debug"
-    t.string   "tcms_user"
-    t.string   "tcms_password"
-    t.integer  "accounts_per_job"
-    t.integer  "rhcbranch"
-    t.integer  "brokertype"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table :runs do |t|
+    t.string :broker
+    t.string :testrun_id
+    t.string :caserun_ids, :array => true, :default => '{}'
+    t.string :accounts, :array => true, :default => '{}'
+    t.integer :job_count
+    t.integer :max_gears
+    t.boolean :debug
+    t.string :tcms_user
+    t.string :tcms_password
+    t.integer :accounts_per_job
+    t.integer :rhcbranch, :references => :rhcbranch
+    t.integer :brokertype, :references => :brokertype 
+    t.string :docker_url, :references => :dockerserver
+    t.string :image_url
+    t.timestamps
   end
+
 
 end
