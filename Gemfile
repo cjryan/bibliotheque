@@ -29,7 +29,7 @@ gem 'spring',        group: :development
 # Use twitter bootstrap for theming
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
-
+gem 'pg'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

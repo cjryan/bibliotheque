@@ -15,6 +15,8 @@
 /tmp
 .project
 *.rbc
+/config/database.yml
+/config/secrets.yml
 capybara-*.html
 .rspec
 /log

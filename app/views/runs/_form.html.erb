@@ -1,0 +1,66 @@
+<%= form_for(@run) do |f| %>
+  <% if @run.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@run.errors.count, "error") %> prohibited this run from being saved:</h2>
+
+      <ul>
+      <% @run.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :broker %><br>
+    <%= f.text_field :broker %>
+  </div>
+  <div class="field">
+    <%= f.label :testrun_id %><br>
+    <%= f.text_field :testrun_id %>
+  </div>
+  <div class="field">
+    <%= f.label :caserun_ids %><br>
+    <%= f.text_field :caserun_ids %>
+  </div>
+  <div class="field">
+    <%= f.label :accounts %><br>
+    <%= f.text_field :accounts %>
+  </div>
+  <div class="field">
+    <%= f.label "rhc branch" %><br>
+    <%= f.collection_select(:rhcbranch, Rhcbranch.all, :id, :branch, include_blank: false) %>
+  </div>
+  <div class="field">
+    <%= f.label "Broker type" %><br>
+    <%= f.collection_select(:brokertype, Brokertype.all, :id, :brokertype, include_blank: false) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job_count %><br>
+    <%= f.number_field :job_count %>
+  </div>
+  <div class="field">
+    <%= f.label :max_gears %><br>
+    <%= f.number_field :max_gears %>
+  </div>
+  <div class="field">
+    <%= f.label :debug %><br>
+    <%= f.check_box :debug %>
+  </div>
+  <div class="field">
+    <%= f.label :tcms_user %><br>
+    <%= f.text_field :tcms_user %>
+  </div>
+  <div class="field">
+    <%= f.label :tcms_password %><br>
+    <%= f.text_field :tcms_password %>
+  </div>
+  <div class="field">
+    <%= f.label :accounts_per_job %><br>
+    <%= f.number_field :accounts_per_job %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

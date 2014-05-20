@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Broker:</strong>
+  <%= @run.broker %>
+</p>
+
+<p>
+  <strong>Testrun:</strong>
+  <%= @run.testrun_id %>
+</p>
+
+<p>
+  <strong>Caserun ids:</strong>
+  <%= @run.caserun_ids %>
+</p>
+
+<p>
+  <strong>Accounts:</strong>
+  <%= @run.accounts %>
+</p>
+
+<p>
+  <strong>Job count:</strong>
+  <%= @run.job_count %>
+</p>
+
+<p>
+  <strong>Max gears:</strong>
+  <%= @run.max_gears %>
+</p>
+
+<p>
+  <strong>Debug:</strong>
+  <%= @run.debug %>
+</p>
+
+<p>
+  <strong>Tcms user:</strong>
+  <%= @run.tcms_user %>
+</p>
+
+<p>
+  <strong>Tcms password:</strong>
+  <%= @run.tcms_password %>
+</p>
+
+<p>
+  <strong>Accounts per job:</strong>
+  <%= @run.accounts_per_job %>
+</p>
+
+<%= link_to 'Edit', edit_run_path(@run) %> |
+<%= link_to 'Back', runs_path %>
