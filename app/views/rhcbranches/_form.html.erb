@@ -1,0 +1,21 @@
+<%= form_for(@rhcbranch) do |f| %>
+  <% if @rhcbranch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rhcbranch.errors.count, "error") %> prohibited this rhcbranch from being saved:</h2>
+
+      <ul>
+      <% @rhcbranch.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :branch %><br>
+    <%= f.text_field :branch %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

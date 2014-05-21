@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  broker: MyString
+  testrun_id: MyString
+  caserun_ids: 
+  accounts: 
+  job_count: 1
+  max_gears: 1
+  debug: false
+  tcms_user: MyString
+  tcms_password: MyString
+  accounts_per_job: 1
+
+two:
+  broker: MyString
+  testrun_id: MyString
+  caserun_ids: 
+  accounts: 
+  job_count: 1
+  max_gears: 1
+  debug: false
+  tcms_user: MyString
+  tcms_password: MyString
+  accounts_per_job: 1

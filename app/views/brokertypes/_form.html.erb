@@ -1,0 +1,21 @@
+<%= form_for(@brokertype) do |f| %>
+  <% if @brokertype.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brokertype.errors.count, "error") %> prohibited this brokertype from being saved:</h2>
+
+      <ul>
+      <% @brokertype.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :brokertype %><br>
+    <%= f.text_field :brokertype %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
