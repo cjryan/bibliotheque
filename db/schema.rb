@@ -51,8 +51,10 @@ ActiveRecord::Schema.define(version: 20140520150726) do
   create_table :runs do |t|
     t.string :broker
     t.string :testrun_id
-    t.string :caserun_ids, :array => true, :default => '{}'
-    t.string :accounts, :array => true, :default => '{}'
+#    t.string :caserun_ids, :array => true, :default => '{}'
+#    t.string :accounts, :array => true, :default => '{}'
+    t.string :caserun_ids
+    t.string :accounts
     t.integer :job_count
     t.integer :max_gears
     t.boolean :debug
