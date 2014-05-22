@@ -17,6 +17,7 @@ class DockerKickstartsController < ApplicationController
     docker_opts['Env'] << "OPENSHIFT_ACCOUNTS=#{@run.accounts}"
     docker_opts['Env'] << "TESTRUN_ID=#{@run.testrun_id}"
     docker_opts['Env'] << "CASERUN_IDS=#{@run.caserun_ids}"
+    docker_opts['Env'] << "DOCKER_RUN_ID=#{@run.id}"
     docker_opts['Image'] = "#{@run.image_url}"
 
     #An entrypoint can be used for complex commands. Specify the program in entrypoint, and the

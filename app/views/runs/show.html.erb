@@ -50,4 +50,10 @@
   <%= @run.accounts_per_job %>
 </p>
 
+<p>
+  <strong>Logs</strong>
+  <%= ENV['OPENSHIFT_DATA_DIR']/log_repository/@run.id %>
+</p>
+
+
 <%= link_to 'Back', runs_path %>
