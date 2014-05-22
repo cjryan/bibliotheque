@@ -31,6 +31,10 @@ gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'pg'
 gem 'debugger'
+
+#Use docker for CucuShift runs
+gem 'docker-api'
+
 #gem 'activerecord-postgres-array'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
