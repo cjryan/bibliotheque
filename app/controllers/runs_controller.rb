@@ -1,3 +1,4 @@
+require "docker"
 class RunsController < ApplicationController
   before_action :set_run, only: [:show, :destroy]
 
@@ -20,6 +21,12 @@ class RunsController < ApplicationController
 
   # GET /runs/1/edit
   def edit
+  end
+
+  def get_docker_images(docker_server)
+    Docker.url = Dockerserver.find_by(:id => docker_server).url
+    result = Docker::Image.all
+    return result
   end
 
   # POST /runs
