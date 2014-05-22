@@ -1,4 +1,10 @@
+require "docker"
+
 class DockerKickstartsController < ApplicationController
+  def initialize(run)
+    @run = run
+  end
+
   def docker_kickstart
     #Configure the docker parameters to pass through the remote API. These will form a HTTP header.
     docker_opts = {}
@@ -8,10 +14,9 @@ class DockerKickstartsController < ApplicationController
     docker_opts['Env'] << "OPENSHIFT_BROKER=#{@run.broker}"
     docker_opts['Env'] << "OPENSHIFT_BROKER_TYPE=#{@run.brokertype}"
     docker_opts['Env'] << "DEBUG=#{@run.debug}"
-    docker_opts['Env'] << "OPENSHIFT_ACCOUNTS=#{@run.accounts.join(',')}"
+    docker_opts['Env'] << "OPENSHIFT_ACCOUNTS=#{@run.accounts}"
     docker_opts['Env'] << "TESTRUN_ID=#{@run.testrun_id}"
     docker_opts['Env'] << "CASERUN_IDS=#{@run.caserun_ids}"
-    docker_opts['Env'] << "CASE_IDS=#{@run.case_ids}"
     docker_opts['Image'] = "#{@run.image_url}"
 
     #An entrypoint can be used for complex commands. Specify the program in entrypoint, and the
