@@ -25,13 +25,16 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-    @images = ["1", "2"]
-    @run = Run.new(run_params)
-
+    params = run_params.clone
+    params["docker_url"] = Dockerserver.find_by(:id => run_params["docker_url"]).url
+    params["rhcbranch"] = Rhcbranch.find_by(:id => run_params["rhcbranch"]).branch
+    params["brokertype"] = Brokertype.find_by(:id => run_params["brokertype"]).brokertype
+    @run = Run.new(params)
     respond_to do |format|
       if @run.save
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
         format.json { render :show, status: :created, location: @run }
+
       else
         format.html { render :new }
         format.json { render json: @run.errors, status: :unprocessable_entity }
@@ -72,6 +75,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:broker, :testrun_id, :caserun_ids, :rhcbranch, :brokertype, :accounts, :job_count, :max_gears, :debug, :tcms_user, :tcms_password, :accounts_per_job)
+      params.require(:run).permit(:broker, :testrun_id, :caserun_ids, :rhcbranch, :brokertype, :accounts, :job_count, :max_gears, :debug, :tcms_user, :tcms_password, :accounts_per_job, :docker_url, :image_url)
     end
 end
