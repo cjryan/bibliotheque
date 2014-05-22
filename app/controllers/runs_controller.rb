@@ -30,6 +30,8 @@ class RunsController < ApplicationController
     params["rhcbranch"] = Rhcbranch.find_by(:id => run_params["rhcbranch"]).branch
     params["brokertype"] = Brokertype.find_by(:id => run_params["brokertype"]).brokertype
     @run = Run.new(params)
+    @docker_kickstart = DockerKickstartsController.new(@run)
+    @docker_kickstart.docker_kickstart
     respond_to do |format|
       if @run.save
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
