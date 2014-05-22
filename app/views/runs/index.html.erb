@@ -30,8 +30,9 @@
         <td><%= run.tcms_user %></td>
         <td><%= run.tcms_password %></td>
         <td><%= run.accounts_per_job %></td>
+        <td><%= run.docker_url %></td>
+        <td><%= run.image_url %></td>
         <td><%= link_to 'Show', run %></td>
-        <td><%= link_to 'Edit', edit_run_path(run) %></td>
         <td><%= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
