@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+#  get 'docker_info/get_docker_images'
+
   resources :dockerservers
 
   resources :rhcbranches
@@ -6,6 +8,10 @@ Rails.application.routes.draw do
   resources :brokertypes
 
   resources :runs
+
+  get 'runs/:id/logs' => 'logs#display'
+
+  get 'imageurls/:docker_id' => 'docker_info#get_docker_images'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

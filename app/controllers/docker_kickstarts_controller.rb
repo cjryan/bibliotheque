@@ -20,6 +20,7 @@ class DockerKickstartsController < ApplicationController
     docker_opts['Env'] << "DOCKER_RUN_ID=#{@run.id}"
     docker_opts['Image'] = "#{@run.image_url}"
 
+
     #An entrypoint can be used for complex commands. Specify the program in entrypoint, and the
     #args in 'Cmd'. 'Cmd' is an array of arguments. It would look like
     #docker_opts['Entrypoint'] = 'ls'
