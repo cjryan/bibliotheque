@@ -28,12 +28,10 @@ class RunsController < ApplicationController
   # POST /runs.json
   def create
     params = run_params.clone
-    require "debugger"
-    debugger
     params["docker_url"] = Dockerserver.find_by(:id => run_params["docker_url"]).url
     params["rhcbranch"] = Rhcbranch.find_by(:id => run_params["rhcbranch"]).branch
     params["brokertype"] = Brokertype.find_by(:id => run_params["brokertype"]).brokertype
-    
+
     @run = Run.new(params)
     @docker_kickstart = DockerKickstartsController.new(@run)
     @docker_kickstart.docker_kickstart
