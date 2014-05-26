@@ -51,8 +51,7 @@
 </p>
 
 <p>
-  <strong>Logs</strong>
-  <%= ENV['OPENSHIFT_DATA_DIR']/log_repository/@run.id %>
+<a class="logs" href="<%= "#{@run.id.to_s}/logs" %>">Logs</a>
 </p>
 
 

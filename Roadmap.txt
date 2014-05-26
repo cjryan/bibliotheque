@@ -1,0 +1,2 @@
+1. Dynamic image dropdown
+2. Add DOCKER_RUN_ID to both docker_runner.sh and docker_runner.rb
