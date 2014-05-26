@@ -54,7 +54,7 @@
   </div>
   <div class="field">
     <%= f.label :tcms_password %><br>
-    <%= f.password_field :tcms_password %>
+    <%= f.text_field :tcms_password %>
   </div>
   <div class="field">
     <%= f.label :accounts_per_job %><br>
@@ -62,7 +62,7 @@
   </div>
   <div class="field">
     <%= f.label "Docker server" %><br>
-    <%= f.collection_select(:docker_url, Dockerserver.all, :id, :url, include_blank: false) %>
+    <%= f.collection_select(:docker_url, Dockerserver.all, :id, :url, include_blank: false, :onchange => 'query_dockerimages()') %>
   </div>
   <div class="field">
     <%= f.label "Docker image" %><br>
