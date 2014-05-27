@@ -69,6 +69,6 @@ class LogserversController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def logserver_params
-      params.require(:logserver).permit(:hostname)
+      params.require(:logserver).permit(:hostname, :username)
     end
 end

@@ -1,3 +1,4 @@
 class Logserver < ActiveRecord::Base
-  has_many :runs
+  validates :hostname, :username, presence: true
+  has_many: runs
 end

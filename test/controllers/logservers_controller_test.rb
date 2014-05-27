@@ -18,7 +18,7 @@ class LogserversControllerTest < ActionController::TestCase
 
   test "should create logserver" do
     assert_difference('Logserver.count') do
-      post :create, logserver: { hostname: @logserver.hostname, ip: @logserver.ip }
+      post :create, logserver: { hostname: @logserver.hostname, username: @logserver.username }
     end
 
     assert_redirected_to logserver_path(assigns(:logserver))
@@ -35,7 +35,7 @@ class LogserversControllerTest < ActionController::TestCase
   end
 
   test "should update logserver" do
-    patch :update, id: @logserver, logserver: { hostname: @logserver.hostname, ip: @logserver.ip }
+    patch :update, id: @logserver, logserver: { hostname: @logserver.hostname, username: @logserver.username }
     assert_redirected_to logserver_path(assigns(:logserver))
   end
 

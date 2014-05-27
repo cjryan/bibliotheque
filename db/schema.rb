@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20140527154953) do
     t.integer  "brokertype"
     t.string   "docker_url"
     t.string   "image_url"
+    t.string   "logserver"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

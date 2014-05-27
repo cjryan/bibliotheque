@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Hostname</th>
+      <th>Username</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
     <% @logservers.each do |logserver| %>
       <tr>
         <td><%= logserver.hostname %></td>
+        <td><%= logserver.username %></td>
         <td><%= link_to 'Show', logserver %></td>
         <td><%= link_to 'Edit', edit_logserver_path(logserver) %></td>
         <td><%= link_to 'Destroy', logserver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
