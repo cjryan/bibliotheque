@@ -68,6 +68,11 @@
     <%= f.label "Docker image" %><br>
     <%= f.collection_select(:image_url, [], :id, :tag) %>
   </div>
+  <div class="field">
+    <%= f.label "Log server" %><br>
+    <%= f.collection_select(:logserver, Logserver.all, :id, :hostname, {:prompt => "Select"}) %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>
