@@ -14,7 +14,7 @@ class Run < ActiveRecord::Base
   has_many :runbranches
   has_many :rhcbranchs, through: :runbranches
   validates :accounts, format: { with: /[\w\d\_\.\+]+\@[\w\d\_\.]+\:\S+\:\w+/, message: "should have the following format: user@domain.com:password:small,"}
-  validates :broker, :job_count, :max_gears, :tcms_user, :tcms_password, :accounts_per_job, :rhcbranch, :brokertype, :image_url, presence: true
+  validates :broker, :job_count, :max_gears, :tcms_user, :tcms_password, :accounts_per_job, :rhcbranch, :brokertype, :image_url, :logserver, presence: true
   validates_with ValidateCaserunTestruns
 end
 

@@ -31,6 +31,8 @@ class RunsController < ApplicationController
     params["docker_url"] = Dockerserver.find_by(:id => run_params["docker_url"]).url
     params["rhcbranch"] = Rhcbranch.find_by(:id => run_params["rhcbranch"]).branch
     params["brokertype"] = Brokertype.find_by(:id => run_params["brokertype"]).brokertype
+    params["logserver"] = Logserver.find_by(:id => run_params["logserver"]).hostname
+    params["logserver_username"] = Logserver.find_by(:id => run_params["logserver"]).username
 
     @run = Run.new(params)
     @docker_kickstart = DockerKickstartsController.new(@run)
@@ -80,6 +82,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:broker, :testrun_id, :caserun_ids, :rhcbranch, :brokertype, :accounts, :job_count, :max_gears, :debug, :tcms_user, :tcms_password, :accounts_per_job, :docker_url, :image_url)
+      params.require(:run).permit(:broker, :testrun_id, :caserun_ids, :rhcbranch, :brokertype, :accounts, :job_count, :max_gears, :debug, :tcms_user, :tcms_password, :accounts_per_job, :docker_url, :image_url, :logserver)
     end
 end

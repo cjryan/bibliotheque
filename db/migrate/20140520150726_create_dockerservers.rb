@@ -1,4 +1,4 @@
-class CreateDockerServers < ActiveRecord::Migration
+class CreateDockerservers < ActiveRecord::Migration
   def change
     create_table :dockerservers do |t|
       t.string :url

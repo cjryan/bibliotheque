@@ -15,7 +15,8 @@ class CreateRuns < ActiveRecord::Migration
       t.integer :brokertype, :references => :brokertype 
       t.string :docker_url, :references => :dockerserver
       t.string :image_url
-      t.string :logserver, :references => :logserver
+      t.string :logserver
+      t.string :logserver_username
       t.timestamps
     end
   end

@@ -6,6 +6,8 @@ class DockerKickstartsController < ApplicationController
   end
 
   def docker_kickstart
+    require "debugger"
+    debugger
     #Configure the docker parameters to pass through the remote API. These will form a HTTP header.
     docker_opts = {}
     docker_opts['Env'] = []
@@ -19,7 +21,8 @@ class DockerKickstartsController < ApplicationController
     docker_opts['Env'] << "CASERUN_IDS=#{@run.caserun_ids}"
     docker_opts['Env'] << "DOCKER_RUN_ID=#{@run.id}"
     docker_opts['Image'] = "#{@run.image_url}"
-
+    docker_opts['Env'] << "LOG_SERVER=#{@run.logserver}"
+    docker_opts['Env'] << "LOG_SERVER_USERNAME=#{@run.logserver_username}"
 
     #An entrypoint can be used for complex commands. Specify the program in entrypoint, and the
     #args in 'Cmd'. 'Cmd' is an array of arguments. It would look like
