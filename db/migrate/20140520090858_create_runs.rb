@@ -3,8 +3,6 @@ class CreateRuns < ActiveRecord::Migration
     create_table :runs do |t|
       t.string :broker
       t.string :testrun_id
-#      t.string :caserun_ids, :array => true, :default => '{}'
-#      t.string :accounts, :array => true, :default => '{}'
       t.string :caserun_ids
       t.string :accounts
       t.integer :job_count
@@ -17,6 +15,7 @@ class CreateRuns < ActiveRecord::Migration
       t.integer :brokertype, :references => :brokertype 
       t.string :docker_url, :references => :dockerserver
       t.string :image_url
+      t.string :logserver, :references => :logserver
       t.timestamps
     end
   end
