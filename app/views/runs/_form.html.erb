@@ -62,11 +62,11 @@
   </div>
   <div class="field">
     <%= f.label "Docker server" %><br>
-    <%= f.collection_select(:docker_url, Dockerserver.all, :id, :url, include_blank: false, :onchange => 'query_dockerimages()') %>
+    <%= f.collection_select(:docker_url, Dockerserver.all, :id, :url, {:prompt => "Select"}, {:onchange => "query_dockerimages(this.value)"}) %>
   </div>
   <div class="field">
     <%= f.label "Docker image" %><br>
-    <%= f.text_field :image_url %>
+    <%= f.collection_select(:image_url, [], :id, :tag) %>
   </div>
 
   <div class="actions">
