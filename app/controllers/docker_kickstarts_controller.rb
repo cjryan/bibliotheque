@@ -6,8 +6,6 @@ class DockerKickstartsController < ApplicationController
   end
 
   def docker_kickstart
-    require "debugger"
-    debugger
     #Configure the docker parameters to pass through the remote API. These will form a HTTP header.
     docker_opts = {}
     docker_opts['Env'] = []
