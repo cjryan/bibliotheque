@@ -1,0 +1,25 @@
+<%= form_for(@logserver) do |f| %>
+  <% if @logserver.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@logserver.errors.count, "error") %> prohibited this logserver from being saved:</h2>
+
+      <ul>
+      <% @logserver.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :hostname %><br>
+    <%= f.text_field :hostname %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

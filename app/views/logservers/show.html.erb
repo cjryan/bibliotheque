@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hostname:</strong>
+  <%= @logserver.hostname %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @logserver.username %>
+</p>
+
+<%= link_to 'Edit', edit_logserver_path(@logserver) %> |
+<%= link_to 'Back', logservers_path %>
