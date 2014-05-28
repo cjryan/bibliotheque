@@ -3,3 +3,9 @@
 # available.  Otherwise it will execute while your application is stopped
 # before the deploy step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
+cp $OPENSHIFT_DATA_DIR/database.yml ~/app-root/runtime/repo/config/
+cp $OPENSHIFT_DATA_DIR/secrets.yml ~/app-root/runtime/repo/config/
+
+cp $OPENSHIFT_DATA_DIR/database.yml ~/app-root/repo/config/
+cp $OPENSHIFT_DATA_DIR/secrets.yml ~/app-root/repo/config/
+
