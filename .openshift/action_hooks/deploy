@@ -17,6 +17,8 @@ set -e
 
 if [ ! -z "$OPENSHIFT_POSTGRESQL_DB_HOST" ]; then
   export RAILS_DB="postgresql"
+  cp $OPENSHIFT_DATA_DIR/database.yml ~/app-root/repo/config/
+  cp $OPENSHIFT_DATA_DIR/secrets.yml ~/app-root/repo/config/
 fi
 
 if [ ! -z "$OPENSHIFT_MYSQL_DB_HOST" ]; then
