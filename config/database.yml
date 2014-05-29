@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  template: template0
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: biblio_dev
+  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
+  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: biblio_test
+
+production:
+  <<: *default
+  database: bibliotheque
+  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
+  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
