@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :logservers
+
 #  get 'docker_info/get_docker_images'
 
   resources :dockerservers
