@@ -86,10 +86,12 @@ ActiveRecord::Schema.define(version: 20140602061459) do
     t.integer  "rhcbranch_id"
     t.integer  "brokertype_id"
     t.integer  "accounts_per_job"
+    t.integer  "logserver_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
+  
+  add_index "runs", ["logserver_id"], name: "index_runs_on_logserver_id", using: :btree
   add_index "runs", ["brokertype_id"], name: "index_runs_on_brokertype_id", using: :btree
   add_index "runs", ["rhcbranch_id"], name: "index_runs_on_rhcbranch_id", using: :btree
 

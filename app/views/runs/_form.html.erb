@@ -67,17 +67,10 @@
       </div>
     <% end %>
   </div>
-  <div class="serverlist">
-    <%= f.fields_for :runlogservers do |builder| %>
-      <div class="field">
-        <%= builder.label :logserver_id %><br>
-        <%= builder.collection_select(:logserver_id, Logserver.all, :id, :hostname, include_blank: false) %>
-      </div>
-    <% end %>
+  <div class="field">
+    <%= f.label :logserver_id %><br>
+    <%= f.collection_select(:logserver_id, Logserver.all, :id, :hostname, include_blank: false) %>
   </div>
-
-
-
   <div class="actions">
     <%= f.submit %>
   </div>
