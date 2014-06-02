@@ -59,7 +59,7 @@
       </div>
       <div class="field">
         <%= builder.label "Docker server" %><br>
-        <%= builder.collection_select(:dockerserver_id, Dockerserver.all, :id, :name, {:prompt => "Select"}, {:onchange => "query_dockerimages(this.value)"}) %>
+        <%= builder.collection_select(:dockerserver_id, Dockerserver.all, :id, :name, {:prompt => "Select"}, {:onchange => "query_dockerimages(this.value, this.id)"}) %>
       </div>
       <div class="field">
         <%= builder.label "Docker image" %><br>
