@@ -28,7 +28,7 @@ class DockerserversController < ApplicationController
 
     respond_to do |format|
       if @dockerserver.save
-        format.html { redirect_to @dockerserver, notice: 'Docker server was successfully created.' }
+        format.html { redirect_to @dockerserver, notice: 'Dockerserver was successfully created.' }
         format.json { render :show, status: :created, location: @dockerserver }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DockerserversController < ApplicationController
   def update
     respond_to do |format|
       if @dockerserver.update(dockerserver_params)
-        format.html { redirect_to @dockerserver, notice: 'Docker server was successfully updated.' }
+        format.html { redirect_to @dockerserver, notice: 'Dockerserver was successfully updated.' }
         format.json { render :show, status: :ok, location: @dockerserver }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class DockerserversController < ApplicationController
   def destroy
     @dockerserver.destroy
     respond_to do |format|
-      format.html { redirect_to dockerservers_url, notice: 'Docker server was successfully destroyed.' }
+      format.html { redirect_to dockerservers_url, notice: 'Dockerserver was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class DockerserversController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dockerserver_params
-      params.require(:dockerserver).permit(:url)
+      params.require(:dockerserver).permit(:name, :url)
     end
 end

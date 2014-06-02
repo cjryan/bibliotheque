@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Type</th>
+      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -11,7 +11,7 @@
   <tbody>
     <% @brokertypes.each do |brokertype| %>
       <tr>
-        <td><%= brokertype.brokertype %></td>
+        <td><%= brokertype.name %></td>
         <td><%= link_to 'Show', brokertype %></td>
         <td><%= link_to 'Edit', edit_brokertype_path(brokertype) %></td>
         <td><%= link_to 'Destroy', brokertype, method: :delete, data: { confirm: 'Are you sure?' } %></td>

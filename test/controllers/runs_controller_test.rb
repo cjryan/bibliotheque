@@ -18,7 +18,7 @@ class RunsControllerTest < ActionController::TestCase
 
   test "should create run" do
     assert_difference('Run.count') do
-      post :create, run: { accounts: @run.accounts, accounts_per_job: @run.accounts_per_job, broker: @run.broker, caserun_ids: @run.caserun_ids, debug: @run.debug, job_count: @run.job_count, max_gears: @run.max_gears, tcms_password: @run.tcms_password, tcms_user: @run.tcms_user, testrun_id: @run.testrun_id }
+      post :create, run: { accounts: @run.accounts, accounts_per_job: @run.accounts_per_job, broker: @run.broker, brokertype_id: @run.brokertype_id, caseruns: @run.caseruns, maxgears: @run.maxgears, rhcbranch_id: @run.rhcbranch_id, tcms_password: @run.tcms_password, tcms_user: @run.tcms_user, testrun: @run.testrun }
     end
 
     assert_redirected_to run_path(assigns(:run))
@@ -35,7 +35,7 @@ class RunsControllerTest < ActionController::TestCase
   end
 
   test "should update run" do
-    patch :update, id: @run, run: { accounts: @run.accounts, accounts_per_job: @run.accounts_per_job, broker: @run.broker, caserun_ids: @run.caserun_ids, debug: @run.debug, job_count: @run.job_count, max_gears: @run.max_gears, tcms_password: @run.tcms_password, tcms_user: @run.tcms_user, testrun_id: @run.testrun_id }
+    patch :update, id: @run, run: { accounts: @run.accounts, accounts_per_job: @run.accounts_per_job, broker: @run.broker, brokertype_id: @run.brokertype_id, caseruns: @run.caseruns, maxgears: @run.maxgears, rhcbranch_id: @run.rhcbranch_id, tcms_password: @run.tcms_password, tcms_user: @run.tcms_user, testrun: @run.testrun }
     assert_redirected_to run_path(assigns(:run))
   end
 

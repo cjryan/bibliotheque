@@ -1,6 +1,6 @@
 
 function query_dockerimages(server_id) {
-  var url = "/imageurls/1.json"
+  var url = "/imageurls/" + server_id + ".json"
   response = jQuery.getJSON(url)
   $.getJSON( url, function( data ) {
     var items = [];

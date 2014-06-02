@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Branch</th>
+      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -11,7 +11,7 @@
   <tbody>
     <% @rhcbranches.each do |rhcbranch| %>
       <tr>
-        <td><%= rhcbranch.branch %></td>
+        <td><%= rhcbranch.name %></td>
         <td><%= link_to 'Show', rhcbranch %></td>
         <td><%= link_to 'Edit', edit_rhcbranch_path(rhcbranch) %></td>
         <td><%= link_to 'Destroy', rhcbranch, method: :delete, data: { confirm: 'Are you sure?' } %></td>

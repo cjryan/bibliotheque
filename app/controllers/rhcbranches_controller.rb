@@ -69,6 +69,6 @@ class RhcbranchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rhcbranch_params
-      params.require(:rhcbranch).permit(:branch)
+      params.require(:rhcbranch).permit(:name)
     end
 end

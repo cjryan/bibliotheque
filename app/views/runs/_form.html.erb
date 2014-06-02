@@ -16,37 +16,20 @@
     <%= f.text_field :broker %>
   </div>
   <div class="field">
-    <%= f.label :testrun_id %><br>
-    <%= f.text_field :testrun_id %>
+    <%= f.label :testrun %><br>
+    <%= f.number_field :testrun %>
   </div>
   <div class="field">
-    <%= f.label :caserun_ids %><br>
-    <%= f.text_field :caserun_ids %>
+    <%= f.label :caseruns %><br>
+    <%= f.text_field :caseruns %>
   </div>
   <div class="field">
     <%= f.label :accounts %><br>
     <%= f.text_field :accounts %>
   </div>
   <div class="field">
-    <%= f.label "rhc branch" %><br>
-    <%= f.collection_select(:rhcbranch, Rhcbranch.all, :id, :branch, include_blank: false) %>
-  </div>
-  <div class="field">
-    <%= f.label "Broker type" %><br>
-    <%= f.collection_select(:brokertype, Brokertype.all, :id, :brokertype, include_blank: false) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :job_count %><br>
-    <%= f.number_field :job_count %>
-  </div>
-  <div class="field">
-    <%= f.label :max_gears %><br>
-    <%= f.number_field :max_gears %>
-  </div>
-  <div class="field">
-    <%= f.label :debug %><br>
-    <%= f.check_box :debug %>
+    <%= f.label :maxgears %><br>
+    <%= f.number_field :maxgears %>
   </div>
   <div class="field">
     <%= f.label :tcms_user %><br>
@@ -57,21 +40,42 @@
     <%= f.password_field :tcms_password %>
   </div>
   <div class="field">
+    <%= f.label :rhcbranch_id %><br>
+    <%= f.collection_select(:rhcbranch_id, Rhcbranch.all, :id, :name, include_blank: false) %>
+  </div>
+  <div class="field">
+    <%= f.label :brokertype_id %><br>
+    <%= f.collection_select(:brokertype_id, Brokertype.all, :id, :name, include_blank: false) %>
+  </div>
+  <div class="field">
     <%= f.label :accounts_per_job %><br>
     <%= f.number_field :accounts_per_job %>
   </div>
-  <div class="field">
-    <%= f.label "Docker server" %><br>
-    <%= f.collection_select(:docker_url, Dockerserver.all, :id, :url, {:prompt => "Select"}, {:onchange => "query_dockerimages(this.value)"}) %>
+  <div class="serverlist">
+    <%= f.fields_for :rundockerservers do |builder| %>
+      <div class="field">
+        <%= builder.label :jobcount %>
+        <%= builder.number_field :jobcount %>
+      </div>
+      <div class="field">
+        <%= builder.label "Docker server" %><br>
+        <%= builder.collection_select(:dockerserver_id, Dockerserver.all, :id, :name, {:prompt => "Select"}, {:onchange => "query_dockerimages(this.value)"}) %>
+      </div>
+      <div class="field">
+        <%= builder.label "Docker image" %><br>
+        <%= builder.collection_select(:image_id, [], :image_imageuuid, :tag) %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label "Docker image" %><br>
-    <%= f.collection_select(:image_url, [], :id, :tag) %>
+  <div class="serverlist">
+    <%= f.fields_for :runlogservers do |builder| %>
+      <div class="field">
+        <%= builder.label :logserver_id %><br>
+        <%= builder.collection_select(:logserver_id, Logserver.all, :id, :hostname, include_blank: false) %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label "Log server" %><br>
-    <%= f.collection_select(:logserver, Logserver.all, :id, :hostname, {:prompt => "Select"}) %>
-  </div>
+
 
 
   <div class="actions">

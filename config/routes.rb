@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
+  resources :runs
+
+  resources :rundockerservers
+
+  resources :images
+
+  resources :dockerservers
+
   resources :logservers
 
 #  get 'docker_info/get_docker_images'
 
-  resources :dockerservers
-
   resources :rhcbranches
 
   resources :brokertypes
-
-  resources :runs
 
   get 'runs/:id/logs' => 'logs#display'
 
