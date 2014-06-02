@@ -18,7 +18,7 @@ class RhcbranchesControllerTest < ActionController::TestCase
 
   test "should create rhcbranch" do
     assert_difference('Rhcbranch.count') do
-      post :create, rhcbranch: { branch: @rhcbranch.branch }
+      post :create, rhcbranch: { name: @rhcbranch.name }
     end
 
     assert_redirected_to rhcbranch_path(assigns(:rhcbranch))
@@ -35,7 +35,7 @@ class RhcbranchesControllerTest < ActionController::TestCase
   end
 
   test "should update rhcbranch" do
-    patch :update, id: @rhcbranch, rhcbranch: { branch: @rhcbranch.branch }
+    patch :update, id: @rhcbranch, rhcbranch: { name: @rhcbranch.name }
     assert_redirected_to rhcbranch_path(assigns(:rhcbranch))
   end
 

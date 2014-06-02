@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  run_id: 
+  dockerserver_id: 
+  image_id: 
+  jobcount: 1
+
+two:
+  run_id: 
+  dockerserver_id: 
+  image_id: 
+  jobcount: 1

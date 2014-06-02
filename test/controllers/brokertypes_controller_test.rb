@@ -18,7 +18,7 @@ class BrokertypesControllerTest < ActionController::TestCase
 
   test "should create brokertype" do
     assert_difference('Brokertype.count') do
-      post :create, brokertype: { type: @brokertype.type }
+      post :create, brokertype: { name: @brokertype.name }
     end
 
     assert_redirected_to brokertype_path(assigns(:brokertype))
@@ -35,7 +35,7 @@ class BrokertypesControllerTest < ActionController::TestCase
   end
 
   test "should update brokertype" do
-    patch :update, id: @brokertype, brokertype: { type: @brokertype.type }
+    patch :update, id: @brokertype, brokertype: { name: @brokertype.name }
     assert_redirected_to brokertype_path(assigns(:brokertype))
   end
 

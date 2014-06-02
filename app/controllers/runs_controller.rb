@@ -1,6 +1,5 @@
-require "docker"
 class RunsController < ApplicationController
-  before_action :set_run, only: [:show, :destroy]
+  before_action :set_run, only: [:show, :edit, :update, :destroy]
 
   # GET /runs
   # GET /runs.json
@@ -15,14 +14,18 @@ class RunsController < ApplicationController
 
   # GET /runs/new
   def new
-
     @run = Run.new
+    Dockerserver.all.size.times do 
+      @run.rundockerservers.build
+    end
+    Logserver.all.size.times do
+      @run.runlogservers.build
+    end
   end
 
   # GET /runs/1/edit
   def edit
   end
-
 
   # POST /runs
   # POST /runs.json
@@ -37,11 +40,12 @@ class RunsController < ApplicationController
     @run = Run.new(params)
     @docker_kickstart = DockerKickstartsController.new(@run)
     @docker_kickstart.docker_kickstart
+
+
     respond_to do |format|
       if @run.save
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
         format.json { render :show, status: :created, location: @run }
-
       else
         format.html { render :new }
         format.json { render json: @run.errors, status: :unprocessable_entity }
@@ -52,7 +56,6 @@ class RunsController < ApplicationController
   # PATCH/PUT /runs/1
   # PATCH/PUT /runs/1.json
   def update
-    @images = ["1", "2"]
     respond_to do |format|
       if @run.update(run_params)
         format.html { redirect_to @run, notice: 'Run was successfully updated.' }
@@ -82,6 +85,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:broker, :testrun_id, :caserun_ids, :rhcbranch, :brokertype, :accounts, :job_count, :max_gears, :debug, :tcms_user, :tcms_password, :accounts_per_job, :docker_url, :image_url, :logserver)
+      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
     end
 end

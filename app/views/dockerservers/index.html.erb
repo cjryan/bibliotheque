@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Url</th>
       <th colspan="3"></th>
     </tr>
@@ -11,6 +12,7 @@
   <tbody>
     <% @dockerservers.each do |dockerserver| %>
       <tr>
+        <td><%= dockerserver.name %></td>
         <td><%= dockerserver.url %></td>
         <td><%= link_to 'Show', dockerserver %></td>
         <td><%= link_to 'Edit', edit_dockerserver_path(dockerserver) %></td>
@@ -22,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Docker server', new_dockerserver_path %>
+<%= link_to 'New Dockerserver', new_dockerserver_path %>

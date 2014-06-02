@@ -2,24 +2,24 @@
 
 one:
   broker: MyString
-  testrun_id: MyString
-  caserun_ids: 
-  accounts: 
-  job_count: 1
-  max_gears: 1
-  debug: false
+  testrun: 1
+  caseruns: MyString
+  accounts: MyString
+  maxgears: 1
   tcms_user: MyString
   tcms_password: MyString
+  rhcbranch_id: 
+  brokertype_id: 
   accounts_per_job: 1
 
 two:
   broker: MyString
-  testrun_id: MyString
-  caserun_ids: 
-  accounts: 
-  job_count: 1
-  max_gears: 1
-  debug: false
+  testrun: 1
+  caseruns: MyString
+  accounts: MyString
+  maxgears: 1
   tcms_user: MyString
   tcms_password: MyString
+  rhcbranch_id: 
+  brokertype_id: 
   accounts_per_job: 1

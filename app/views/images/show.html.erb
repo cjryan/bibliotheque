@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uuid:</strong>
+  <%= @image.uuid %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @image.tag %>
+</p>
+
+<p>
+  <strong>Dockerserver:</strong>
+  <%= @image.dockerserver %>
+</p>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>

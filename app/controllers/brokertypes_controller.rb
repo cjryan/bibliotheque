@@ -69,6 +69,6 @@ class BrokertypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def brokertype_params
-      params.require(:brokertype).permit(:brokertype)
+      params.require(:brokertype).permit(:name)
     end
 end
