@@ -73,6 +73,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.3.4)
     multi_json (1.10.1)
+    nested_form (0.3.2)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -149,6 +150,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
+  nested_form
   pg
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)

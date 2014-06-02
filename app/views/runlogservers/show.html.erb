@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Run:</strong>
+  <%= @runlogserver.run %>
+</p>
+
+<p>
+  <strong>Logserver:</strong>
+  <%= @runlogserver.logserver %>
+</p>
+
+<%= link_to 'Edit', edit_runlogserver_path(@runlogserver) %> |
+<%= link_to 'Back', runlogservers_path %>

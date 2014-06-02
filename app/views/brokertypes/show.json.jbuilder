@@ -1,1 +1,1 @@
-json.extract! @brokertype, :id, :brokertype, :created_at, :updated_at
+json.extract! @brokertype, :id, :name, :created_at, :updated_at

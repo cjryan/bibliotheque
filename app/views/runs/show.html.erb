@@ -7,12 +7,12 @@
 
 <p>
   <strong>Testrun:</strong>
-  <%= @run.testrun_id %>
+  <%= @run.testrun %>
 </p>
 
 <p>
-  <strong>Caserun ids:</strong>
-  <%= @run.caserun_ids %>
+  <strong>Caseruns:</strong>
+  <%= @run.caseruns %>
 </p>
 
 <p>
@@ -21,18 +21,8 @@
 </p>
 
 <p>
-  <strong>Job count:</strong>
-  <%= @run.job_count %>
-</p>
-
-<p>
-  <strong>Max gears:</strong>
-  <%= @run.max_gears %>
-</p>
-
-<p>
-  <strong>Debug:</strong>
-  <%= @run.debug %>
+  <strong>Maxgears:</strong>
+  <%= @run.maxgears %>
 </p>
 
 <p>
@@ -46,13 +36,19 @@
 </p>
 
 <p>
+  <strong>Rhcbranch:</strong>
+  <%= @run.rhcbranch %>
+</p>
+
+<p>
+  <strong>Brokertype:</strong>
+  <%= @run.brokertype %>
+</p>
+
+<p>
   <strong>Accounts per job:</strong>
   <%= @run.accounts_per_job %>
 </p>
 
-<p>
-<a class="logs" href="<%= "#{@run.id.to_s}/logs" %>">Logs</a>
-</p>
-
-
+<%= link_to 'Edit', edit_run_path(@run) %> |
 <%= link_to 'Back', runs_path %>

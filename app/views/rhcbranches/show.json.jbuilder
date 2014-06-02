@@ -1,1 +1,1 @@
-json.extract! @rhcbranch, :id, :branch, :created_at, :updated_at
+json.extract! @rhcbranch, :id, :name, :created_at, :updated_at

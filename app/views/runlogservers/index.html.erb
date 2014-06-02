@@ -1,0 +1,27 @@
+<h1>Listing runlogservers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Run</th>
+      <th>Logserver</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @runlogservers.each do |runlogserver| %>
+      <tr>
+        <td><%= runlogserver.run %></td>
+        <td><%= runlogserver.logserver %></td>
+        <td><%= link_to 'Show', runlogserver %></td>
+        <td><%= link_to 'Edit', edit_runlogserver_path(runlogserver) %></td>
+        <td><%= link_to 'Destroy', runlogserver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Runlogserver', new_runlogserver_path %>

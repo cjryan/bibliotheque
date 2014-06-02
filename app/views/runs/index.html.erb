@@ -5,13 +5,13 @@
     <tr>
       <th>Broker</th>
       <th>Testrun</th>
-      <th>Caserun ids</th>
+      <th>Caseruns</th>
       <th>Accounts</th>
-      <th>Job count</th>
-      <th>Max gears</th>
-      <th>Debug</th>
+      <th>Maxgears</th>
       <th>Tcms user</th>
       <th>Tcms password</th>
+      <th>Rhcbranch</th>
+      <th>Brokertype</th>
       <th>Accounts per job</th>
       <th colspan="3"></th>
     </tr>
@@ -21,18 +21,17 @@
     <% @runs.each do |run| %>
       <tr>
         <td><%= run.broker %></td>
-        <td><%= run.testrun_id %></td>
-        <td><%= run.caserun_ids %></td>
+        <td><%= run.testrun %></td>
+        <td><%= run.caseruns %></td>
         <td><%= run.accounts %></td>
-        <td><%= run.job_count %></td>
-        <td><%= run.max_gears %></td>
-        <td><%= run.debug %></td>
+        <td><%= run.maxgears %></td>
         <td><%= run.tcms_user %></td>
         <td><%= run.tcms_password %></td>
+        <td><%= run.rhcbranch %></td>
+        <td><%= run.brokertype %></td>
         <td><%= run.accounts_per_job %></td>
-        <td><%= run.docker_url %></td>
-        <td><%= run.image_url %></td>
         <td><%= link_to 'Show', run %></td>
+        <td><%= link_to 'Edit', edit_run_path(run) %></td>
         <td><%= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
