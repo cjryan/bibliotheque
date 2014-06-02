@@ -30,16 +30,14 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-    params = run_params.clone
-    params["docker_url"] = Dockerserver.find_by(:id => run_params["docker_url"]).url
-    params["rhcbranch"] = Rhcbranch.find_by(:id => run_params["rhcbranch"]).branch
-    params["brokertype"] = Brokertype.find_by(:id => run_params["brokertype"]).brokertype
-    params["logserver"] = Logserver.find_by(:id => run_params["logserver"]).hostname
-    params["logserver_username"] = Logserver.find_by(:id => run_params["logserver"]).username
-
-    @run = Run.new(params)
-    @docker_kickstart = DockerKickstartsController.new(@run)
-    @docker_kickstart.docker_kickstart
+      params = run_params.clone
+      params["rhcbranch"] = Rhcbranch.find_by(:id => run_params["rhcbranch_id"]).name
+      params["brokertype"] = Brokertype.find_by(:id => run_params["brokertype_id"]).name
+      params["logserver"] = Logserver.find_by(:id => run_params["logserver_id"]).hostname
+      params["logserver_username"] = Logserver.find_by(:id => run_params["logserver_id"]).username
+      @run = Run.new(params)
+      @docker_kickstart = DockerKickstartsController.new(@run)
+      @docker_kickstart.docker_kickstart
 
 
     respond_to do |format|
