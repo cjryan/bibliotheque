@@ -3,10 +3,29 @@
 <head>
   <title>Testrails</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, :cache => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="navbar">
+  <div class="navbaritem">
+    <a href="/dockerservers/new">New dockerserver</a>
+  </div>
+  <div class="navbaritem">
+    <a href="/brokertypes/new">New broker type</a>
+  </div>
+  <div class="navbaritem">
+    <a href="/rhcbranches/new">New rhc branch</a>
+  </div>
+  <div class="navbaritem">
+    <a href="/logservers/new">New logserver</a>
+  </div>
+  <div class="navbaritem">
+    <a href="/runs/new">New run</a>
+  </div>
+
+</div>
+
 
 <%= yield %>
 
