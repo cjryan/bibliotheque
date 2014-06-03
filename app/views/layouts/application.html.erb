@@ -7,24 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="navbar">
-  <div class="navbaritem">
-    <a href="/dockerservers/new">New dockerserver</a>
-  </div>
-  <div class="navbaritem">
-    <a href="/brokertypes/new">New broker type</a>
-  </div>
-  <div class="navbaritem">
-    <a href="/rhcbranches/new">New rhc branch</a>
-  </div>
-  <div class="navbaritem">
-    <a href="/logservers/new">New logserver</a>
-  </div>
-  <div class="navbaritem">
-    <a href="/runs/new">New run</a>
-  </div>
-
-</div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="navbaritem">
+          <a href="/dockerservers/new">New dockerserver</a>
+        </li>
+        <li class="navbaritem">
+          <a href="/brokertypes/new">New broker type</a>
+        </li>
+        <li class="navbaritem">
+          <a href="/rhcbranches/new">New rhc branch</a>
+        </li>
+        <li class="navbaritem">
+          <a href="/logservers/new">New logserver</a>
+        </li>
+        <li class="navbaritem">
+          <a href="/runs/new">New run</a>
+        </li>
+      </ul>
+    </div><!-- end container -->
+  </div><!-- end navbar inner -->
+</div><!-- end nav -->
 
 
 <%= yield %>
