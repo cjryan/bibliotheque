@@ -55,7 +55,7 @@
     <%= f.fields_for :rundockerservers do |builder| %>
       <%= render "dockerserver_fields", :f => builder %>
     <% end %>
-    <%= link_to_add_dockerserver "Add new", f, :rundockerservers %>
+    <%= link_to_add_dockerserver "Add new docker server", f, :rundockerservers %>
   </div>
   <div class="field">
     <%= f.label :logserver_id %><br>
