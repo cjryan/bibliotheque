@@ -10,8 +10,8 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: docker
-  password: d0ckeR
+  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
+  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
 
 development:
   <<: *default
