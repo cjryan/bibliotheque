@@ -15,12 +15,8 @@ class RunsController < ApplicationController
   # GET /runs/new
   def new
     @run = Run.new
-    Dockerserver.all.size.times do 
-      @run.rundockerservers.build
-    end
-    Logserver.all.size.times do
-      @run.runlogservers.build
-    end
+    # Now let's add at least one dockerserver
+    @run.rundockerservers.build
   end
 
   # GET /runs/1/edit
@@ -50,6 +46,7 @@ class RunsController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /runs/1
   # PATCH/PUT /runs/1.json

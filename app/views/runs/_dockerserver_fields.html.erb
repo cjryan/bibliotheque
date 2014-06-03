@@ -1,0 +1,17 @@
+<div class="dockerserver">
+  <div class="field">
+    <%= f.label "Docker server" %><br>
+    <%= f.collection_select(:dockerserver_id, Dockerserver.all, :id, :name, {:prompt => "Select"}, {:onchange => "query_dockerimages(this.value, this.id)"}) %>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to_remove_dockerserver "Delete", f %>
+  </div>
+  <div class="field">
+    <%= f.label "Docker image" %><br>
+    <%= f.collection_select(:image_id, [], :image_imageuuid, :tag) %>
+  </div>
+  <div class="field">
+    <%= f.label :jobcount %>
+    <%= f.number_field :jobcount %>
+  </div>
+</div>
+

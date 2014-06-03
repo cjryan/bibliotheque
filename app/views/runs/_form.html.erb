@@ -53,19 +53,9 @@
   </div>
   <div class="serverlist">
     <%= f.fields_for :rundockerservers do |builder| %>
-      <div class="field">
-        <%= builder.label :jobcount %>
-        <%= builder.number_field :jobcount %>
-      </div>
-      <div class="field">
-        <%= builder.label "Docker server" %><br>
-        <%= builder.collection_select(:dockerserver_id, Dockerserver.all, :id, :name, {:prompt => "Select"}, {:onchange => "query_dockerimages(this.value, this.id)"}) %>
-      </div>
-      <div class="field">
-        <%= builder.label "Docker image" %><br>
-        <%= builder.collection_select(:image_id, [], :image_imageuuid, :tag) %>
-      </div>
+      <%= render "dockerserver_fields", :f => builder %>
     <% end %>
+    <%= link_to_add_dockerserver "Add new docker server", f, :rundockerservers %>
   </div>
   <div class="field">
     <%= f.label :logserver_id %><br>

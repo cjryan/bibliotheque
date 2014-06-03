@@ -15,3 +15,16 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery_nested_form
+//
+function remove_dockerserver(link) {
+  console.log(link)
+  console.log($(link).prev())
+  $(link).prev().value = "true";
+  $(link).parent(".dockerserver").hide();
+}
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).parent().before(content.replace(regexp, new_id));
+}
