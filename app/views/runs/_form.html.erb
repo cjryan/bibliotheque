@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<div class="row">
   <div class="field">
     <%= f.label :broker %><br>
     <%= f.text_field :broker %>
@@ -62,6 +62,7 @@
     <%= f.collection_select(:logserver_id, Logserver.all, :id, :hostname, include_blank: false) %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create Run", class: 'btn btn-primary btn-medium' %>
   </div>
+</div><!-- end row -->
 <% end %>
