@@ -23,19 +23,12 @@ class RunsController < ApplicationController
   def edit
   end
 
-  # POST /runs
-  # POST /runs.json
+  # POST /
+  # if tableruns.json
   def create
-      params = run_params.clone
-      params["rhcbranch"] = Rhcbranch.find_by(:id => run_params["rhcbranch_id"]).name
-      params["brokertype"] = Brokertype.find_by(:id => run_params["brokertype_id"]).name
-      params["logserver"] = Logserver.find_by(:id => run_params["logserver_id"]).hostname
-      params["logserver_username"] = Logserver.find_by(:id => run_params["logserver_id"]).username
-      @run = Run.new(params)
-      @docker_kickstart = DockerKickstartsController.new(@run)
-      @docker_kickstart.docker_kickstart
-
-
+    @run = Run.new(run_params)
+    @docker_kickstart = DockerKickstartsController.new(@run, run_params["rundockerservers_attributes"])
+    @docker_kickstart.docker_kickstart
     respond_to do |format|
       if @run.save
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
