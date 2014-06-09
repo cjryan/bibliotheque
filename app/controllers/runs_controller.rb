@@ -27,10 +27,10 @@ class RunsController < ApplicationController
   # if tableruns.json
   def create
     @run = Run.new(run_params)
-    @docker_kickstart = DockerKickstartsController.new(@run, run_params["rundockerservers_attributes"])
-    @docker_kickstart.docker_kickstart
     respond_to do |format|
       if @run.save
+        @docker_kickstart = DockerKickstartsController.new(@run, run_params["rundockerservers_attributes"])
+        @docker_kickstart.docker_kickstart
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
         format.json { render :show, status: :created, location: @run }
       else

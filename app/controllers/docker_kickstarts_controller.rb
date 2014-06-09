@@ -24,7 +24,7 @@ class DockerKickstartsController < ApplicationController
       docker_opts['Env'] << "TCMS_PASSWORD=#{@run.tcms_password}"
       docker_opts['Env'] << "OPENSHIFT_BROKER=#{@run.broker}"
       docker_opts['Env'] << "OPENSHIFT_BROKER_TYPE=#{brokertype}"
-      docker_opts['Env'] << "DEBUG=#{@run.debug}"
+#      docker_opts['Env'] << "DEBUG=#{@run.debug}"
       docker_opts['Env'] << "OPENSHIFT_ACCOUNTS=#{@run.accounts}"
       docker_opts['Env'] << "TESTRUN_ID=#{@run.testrun}"
       docker_opts['Env'] << "CASERUN_IDS=#{@run.caseruns}"
@@ -41,22 +41,16 @@ class DockerKickstartsController < ApplicationController
 
       #Create and run the new container
       #Capture and display the output of the run.
-      threads = []
       containers.each do |container|
         begin
-          threads << Thread.new do
-            # TODO: implement debug mode to keep track of realtime output
-  #          if debug
-  #            container.tap(&:start).attach { |stream, chunk| puts "#{stream}: #{chunk}" }
-  #          else
-  #            container.start
-  #          end
-            container.start
-          end
+          # TODO: implement debug mode to keep track of realtime output
+          container.start
+          # Now give it maximum 6 hours to run
+          container.wait(21600) 
         rescue Exception => e
-          puts e.response
+          puts e.message
         ensure
-          #Once the run is complete, clean up and remove the containers to free up space.
+        #Once the run is complete, clean up and remove the containers to free up space.
           container.tap(&:stop)
           container.remove
         end

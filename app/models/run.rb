@@ -13,7 +13,7 @@ class Run < ActiveRecord::Base
   has_many :rundockerservers
   has_many :runlogservers
   validates :accounts, format: { with: /[\w\d\_\.\+]+\@[\w\d\_\.]+\:\S+\:\w+/, message: "should have the following format: user@domain.com:password:small,"}
-  validates :broker, :max_gears, :tcms_user, :tcms_password, :accounts_per_job, :rhcbranch_id, :brokertype_id, :logserver_id, presence: true
+  validates :broker, :maxgears, :tcms_user, :tcms_password, :accounts_per_job, :rhcbranch_id, :brokertype_id, :logserver_id, presence: true
   validates_with ValidateCaserunTestruns
 
 
