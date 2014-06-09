@@ -1,9 +1,9 @@
 class Run < ActiveRecord::Base
   class ValidateCaserunTestruns < ActiveModel::Validator
     def validate(record)
-      if record.testrun != "" and record.caseruns != ""
-        record.errors[:name] << "You can not specify both testrun_id and caserun_ids" 
-      elsif record.testrun == "" and record.caseruns == ""
+      if !record.testrun.blank? and !record.caseruns.blank?
+        record.errors[:name] << "You can not specify both testrun_id and caserun_ids"
+      elsif record.testrun.blank? and record.caseruns.blank?
         record.errors[:name] << "You should provide either testrun_id or caserun_ids"
       end
     end
