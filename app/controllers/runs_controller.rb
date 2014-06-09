@@ -23,19 +23,12 @@ class RunsController < ApplicationController
   def edit
   end
 
-  # POST /runs
-  # POST /runs.json
+  # POST /
+  # if tableruns.json
   def create
-      params = run_params.clone
-      params["rhcbranch"] = Rhcbranch.find_by(:id => run_params["rhcbranch_id"]).name
-      params["brokertype"] = Brokertype.find_by(:id => run_params["brokertype_id"]).name
-      params["logserver"] = Logserver.find_by(:id => run_params["logserver_id"]).hostname
-      params["logserver_username"] = Logserver.find_by(:id => run_params["logserver_id"]).username
-      @run = Run.new(params)
-      @docker_kickstart = DockerKickstartsController.new(@run)
-      @docker_kickstart.docker_kickstart
-
-
+    @run = Run.new(run_params)
+    @docker_kickstart = DockerKickstartsController.new(@run, run_params["rundockerservers_attributes"])
+    @docker_kickstart.docker_kickstart
     respond_to do |format|
       if @run.save
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
@@ -80,6 +73,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
+      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :logserver_id, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
     end
 end
