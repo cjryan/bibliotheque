@@ -90,9 +90,9 @@ ActiveRecord::Schema.define(version: 20140602061459) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
-  add_index "runs", ["logserver_id"], name: "index_runs_on_logserver_id", using: :btree
+
   add_index "runs", ["brokertype_id"], name: "index_runs_on_brokertype_id", using: :btree
+  add_index "runs", ["logserver_id"], name: "index_runs_on_logserver_id", using: :btree
   add_index "runs", ["rhcbranch_id"], name: "index_runs_on_rhcbranch_id", using: :btree
 
 end
