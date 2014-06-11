@@ -33,6 +33,7 @@ class DockerKickstartsController < ApplicationController
       docker_opts['Env'] << "LOG_SERVER=#{logserver}"
       docker_opts['Env'] << "LOG_SERVER_USERNAME=#{logserver_username}"
       docker_opts['Cmd'] = ['sh','bin/docker_runner.sh']
+#      docker_opts['Cmd'] = ['/bin/bash']
       Docker.url = Dockerserver.find_by(:id => value["dockerserver_id"]).url
       containers = []
       value["jobcount"].to_i.times do
@@ -42,17 +43,19 @@ class DockerKickstartsController < ApplicationController
       #Create and run the new container
       #Capture and display the output of the run.
       containers.each do |container|
-        begin
-          # TODO: implement debug mode to keep track of realtime output
-          container.start
-          # Now give it maximum 6 hours to run
-          container.wait(21600) 
-        rescue Exception => e
-          puts e.message
-        ensure
-        #Once the run is complete, clean up and remove the containers to free up space.
-          container.tap(&:stop)
-          container.remove
+        fork do
+          begin
+            # TODO: implement debug mode to keep track of realtime output
+            container.start
+            # Now give it maximum 6 hours to run
+            container.wait(21600) 
+          rescue Exception => e
+            puts e.message
+          ensure
+          #Once the run is complete, clean up and remove the containers to free up space.
+            container.tap(&:stop)
+            container.remove
+          end
         end
       end
     end
