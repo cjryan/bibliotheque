@@ -8,6 +8,22 @@ class Run < ActiveRecord::Base
       end
     end
   end
+
+  class ValidateEnterpriseAccounts < ActiveModel::Validator
+    def validate(record)
+      brokertype = Brokertype.find_by(:id => record.brokertype_id).name
+      if brokertype != 'devenv'
+        accounts = record.accounts.split(',')
+        total_jobcount = 0
+        record.rundockerservers.each do |server|
+          total_jobcount += server.jobcount
+        end
+        if accounts.size < total_jobcount * record.accounts_per_job
+          record.errors[:name] << "You did not provide enough openshift accounts. Number of accounts should be accounts_per_job * total number of jobs"
+        end
+      end
+    end
+  end
   belongs_to :rhcbranch
   belongs_to :brokertype
   has_many :rundockerservers
@@ -15,7 +31,6 @@ class Run < ActiveRecord::Base
   validates :accounts, format: { with: /[\w\d\_\.\+]+\@[\w\d\_\.]+\:\S+\:\w+/, message: "should have the following format: user@domain.com:password:small,"}
   validates :broker, :maxgears, :tcms_user, :tcms_password, :accounts_per_job, :rhcbranch_id, :brokertype_id, :logserver_id, presence: true
   validates_with ValidateCaserunTestruns
-
-
+  validates_with ValidateEnterpriseAccounts
   accepts_nested_attributes_for :rundockerservers
 end
