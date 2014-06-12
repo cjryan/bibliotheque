@@ -1,9 +1,10 @@
 require "docker"
 
 class DockerKickstartsController < ApplicationController
-  def initialize(run, dockerservers_attributes)
+  def initialize(run, dockerservers_attributes, tcms_password)
     @run = run
     @dockerservers_attributes = dockerservers_attributes
+    @tcms_password = tcms_password
   end
 
   def docker_kickstart
@@ -16,12 +17,12 @@ class DockerKickstartsController < ApplicationController
       brokertype = Brokertype.find_by(:id => @run.brokertype_id).name
       logserver = Logserver.find_by(:id => @run.logserver_id).hostname
       logserver_username = Logserver.find_by(:id => @run.logserver_id).username
-     
+
       docker_opts = {}
       docker_opts['Env'] = []
       docker_opts['Env'] << "RHC_BRANCH=#{rhcbranch}"
       docker_opts['Env'] << "TCMS_USER=#{@run.tcms_user}"
-      docker_opts['Env'] << "TCMS_PASSWORD=#{@run.tcms_password}"
+      docker_opts['Env'] << "TCMS_PASSWORD=#{@tcms_password}"
       docker_opts['Env'] << "OPENSHIFT_BROKER=#{@run.broker}"
       docker_opts['Env'] << "OPENSHIFT_BROKER_TYPE=#{brokertype}"
 #      docker_opts['Env'] << "DEBUG=#{@run.debug}"
@@ -46,7 +47,7 @@ class DockerKickstartsController < ApplicationController
           # TODO: implement debug mode to keep track of realtime output
           container.start
           # Now give it maximum 6 hours to run
-          container.wait(21600) 
+          container.wait(21600)
         rescue Exception => e
           puts e.message
         ensure

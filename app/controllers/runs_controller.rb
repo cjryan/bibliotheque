@@ -26,10 +26,16 @@ class RunsController < ApplicationController
   # POST /
   # if tableruns.json
   def create
-    @run = Run.new(run_params)
+    #encrypt the TCMS password before it gets saved to the DB, but first save it to pass it to the docker container
+    #clone the run_params because they are immutable
+    params = run_params.clone
+    tcms_pass_plaintxt = params[:tcms_password]
+    params[:tcms_password] = BCrypt::Password.create(params[:tcms_password])
+
+    @run = Run.new(params)
     respond_to do |format|
       if @run.save
-        @docker_kickstart = DockerKickstartsController.new(@run, run_params["rundockerservers_attributes"])
+        @docker_kickstart = DockerKickstartsController.new(@run, params["rundockerservers_attributes"], tcms_pass_plaintxt)
         @docker_kickstart.docker_kickstart
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
         format.json { render :show, status: :created, location: @run }
