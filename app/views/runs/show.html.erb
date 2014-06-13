@@ -26,23 +26,13 @@
 </p>
 
 <p>
-  <strong>Tcms user:</strong>
-  <%= @run.tcms_user %>
-</p>
-
-<p>
-  <strong>Tcms password:</strong>
-  <%= @run.tcms_password %>
-</p>
-
-<p>
   <strong>Rhcbranch:</strong>
-  <%= @run.rhcbranch %>
+  <%= Rhcbranch.find_by(:id => @run.rhcbranch.id).name %>
 </p>
 
 <p>
   <strong>Brokertype:</strong>
-  <%= @run.brokertype %>
+  <%= Brokertype.find_by(:id => @run.brokertype.id).name %>
 </p>
 
 <p>
