@@ -13,7 +13,10 @@ class Run < ActiveRecord::Base
     def validate(record)
       brokertype = Brokertype.find_by(:id => record.brokertype_id).name
       if brokertype != 'devenv'
-        accounts = record.accounts.split(',')
+        if not record.accounts.match /[\w\d\_\.\+]+\@[\w\d\_\.]+\:\S+\:\w+/
+          record.errors[:name] << "You should provide coma-separated list of accounts in the format: username@example.com:<password>:<gear_profile>"
+        end
+        accounts = record.accounts.gsub!(",", "").split
         total_jobcount = 0
         record.rundockerservers.each do |server|
           total_jobcount += server.jobcount
@@ -28,7 +31,7 @@ class Run < ActiveRecord::Base
   belongs_to :brokertype
   has_many :rundockerservers
   has_many :runlogservers
-  validates :accounts, format: { with: /[\w\d\_\.\+]+\@[\w\d\_\.]+\:\S+\:\w+/, message: "should have the following format: user@domain.com:password:small,"}
+#  validates :accounts, format: { with: /[\w\d\_\.\+]+\@[\w\d\_\.]+\:\S+\:\w+/, message: "should have the following format: user@domain.com:password:small,"}
   validates :broker, :maxgears, :tcms_user, :tcms_password, :accounts_per_job, :rhcbranch_id, :brokertype_id, :logserver_id, presence: true
   validates_with ValidateCaserunTestruns
   validates_with ValidateEnterpriseAccounts

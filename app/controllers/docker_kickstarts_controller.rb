@@ -52,12 +52,15 @@ class DockerKickstartsController < ApplicationController
     logserver = Logserver.find_by(:id => @run.logserver_id).hostname
     logserver_username = Logserver.find_by(:id => @run.logserver_id).username
     if brokertype != 'devenv'
-      allaccounts = sharecases(@run.accounts.split(","), @dockerservers_attributes.size)
+      allaccounts = sharecases(@run.accounts.gsub(",", "").split, @dockerservers_attributes.size)
     end
     global_counter = 0
     @dockerservers_attributes.each do |key, value|
       docker_opts = {}
       docker_opts['Env'] = []
+      if @run.debug == true
+        docker_opts['Env'] << "DEBUG=true"
+      end
       docker_opts['Env'] << "RHC_BRANCH=#{rhcbranch}"
       docker_opts['Env'] << "TCMS_USER=#{@run.tcms_user}"
       docker_opts['Env'] << "TCMS_PASSWORD=#{@tcms_password}"
