@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :accounts %><br>
-    <%= f.text_field :accounts %>
+    <%= f.text_area :accounts, rows: 12, cols: 50 %>
   </div>
   <div class="field">
     <%= f.label :maxgears %><br>
@@ -51,6 +51,11 @@
     <%= f.label :accounts_per_job %><br>
     <%= f.number_field :accounts_per_job %>
   </div>
+  <div class="field">
+    <%= f.label :debug %><br>
+    <%= f.check_box :debug %>
+  </div>
+
   <div class="serverlist">
     <%= f.fields_for :rundockerservers do |builder| %>
       <%= render "dockerserver_fields", :f => builder %>
