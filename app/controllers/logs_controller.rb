@@ -1,5 +1,8 @@
 class LogsController < ApplicationController
   def index
+    #TODO
+    #Add a check to see if the run is blank, i.e. has no logs
+
     #First, get the html log files:
     @html_links = {}
     #FIXME the asterisks below represent the current log filestructure, and is essentially hardcoded below.
@@ -83,11 +86,11 @@ class LogsController < ApplicationController
         @html_outfile += line + "<br />"
       else
         capture_groups.each do |code|
-          ansi_num = code.scan(/\e\[(\d+)m/)[0][0].to_i
+          ansi_num = code.scan(/\e\[(\d+)?m/)[0][0].to_i
           ansi_key = ansi_codes.invert[ansi_num]
           if ansi_num.to_i >= 30 and ansi_num.to_i < 37
             line = line.gsub(code, "<span style='color:#{css_colors[ansi_key]}'>")
-          elsif ansi_num.to_i == 0
+          elsif ansi_num.to_i == 0 or nil
             line = line.gsub(code, "</span>")
           elsif ansi_num.to_i == 1
             line = line.gsub(code, "<span style='font-weight:bold'>")
