@@ -1,2 +1,14 @@
 <h1>Lawgs</h1>
-<p><%=@file%></p>
+<b>Console Log Output:</b>
+<br />
+<% @console_links.each do |console_file| %>
+  <%= link_to "Log for: #{console_file[0]}", {:controller => "logs", :action => "display_console_logs", :console_file => url_encode(console_file[1])} %>
+  <br />
+<% end %><br />
+<br />
+<b>HTML Log Output:</b>
+<br />
+<% @html_links.each do |file| %>
+  <%= link_to "Log for: #{file[0]}", {:controller => "logs", :action => "display_html_logs", :file => url_encode(file[1])} %>
+  <br />
+<% end %>

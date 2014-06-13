@@ -15,7 +15,13 @@ Rails.application.routes.draw do
 
   resources :brokertypes
 
-  get 'runs/:id/logs' => 'logs#display'
+  get 'runs/:id/logs' => 'logs#index'
+
+  #(.html) is added to the route below to force the page to be shown as .html, as the
+  #console log controller creates an html file out of the original log file
+  get 'logs/console/:console_file(.html)' => 'logs#display_console_logs'
+
+  get 'logs/html_log/:file' => 'logs#display_html_logs'
 
   get 'imageurls/:docker_id' => 'docker_info#get_docker_images'
 

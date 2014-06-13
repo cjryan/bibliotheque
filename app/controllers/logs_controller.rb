@@ -1,12 +1,32 @@
 class LogsController < ApplicationController
-  def display
-    file = Dir.glob(File.join('/home/ofayans/work/trololo/bibliotheque/app/views/static', 'log_repository', params["id"], "logs", "*"))[0]
-    send_file(file, :disposition => 'inline', :type => "html")
-  end
   def index
-    @file = Dir.glob(File.join("#{ENV['OPENSHIFT_DATA_DIR']}/log_repository/*"))
+    #First, get the html log files:
+    @html_links = {}
+    #FIXME the asterisks below represent the current log filestructure, and is essentially hardcoded below.
+    #They represent year, month, day, time, and finally the logs themselves.
+    @html_files = Dir.glob(File.join(ENV['OPENSHIFT_DATA_DIR'], 'log_repository', params["id"], "log", "*", "*", "*","*","*"))
+    @html_files.each do |file|
+      file_name = file[/[^\/]*$/]
+      @html_links[file_name] = file
+    end
+
+    #Then, get the console output:
+    @console_links = {}
+    @console_logs = Dir.glob(File.join(ENV['OPENSHIFT_DATA_DIR'], 'log_repository', params["id"], "docker_output*"))
+    @console_logs.each do |con_file|
+      file_name = con_file[/[^\/]*$/]
+      @console_links[file_name] = con_file
+    end
   end
-  def htmlify
+  def display_html_logs
+      params[:file] = params[:file] + ".html"
+      send_file(params[:file], :disposition => 'inline', :type => "html")
+  end
+  def display_console_logs
+    colorized_log = htmlify(params[:console_file])
+    send_data(colorized_log, :disposition => 'inline', :type => "html")
+  end
+  def htmlify(file_to_decode)
     #The ansi codes are the escape codes for bash to output color and styling.
     ansi_codes = {
       'clear' => 0,
@@ -52,7 +72,7 @@ class LogsController < ApplicationController
 
     @html_outfile = ""
 
-    ansi_file = open(params["log_path"])
+    ansi_file = open(file_to_decode)
 
     ###!!IMPORTANT! See the \e as an escape code. This only works if the text is not copy/pasted,
     #in this case, it will render as ^[
@@ -77,7 +97,8 @@ class LogsController < ApplicationController
         end
       @html_outfile += line + "<br />"
       end
-      #@html_outfile += "</body>"
     end
+    #return the completed file
+    @html_outfile
   end
 end
