@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :brokertypes
 
-  get 'runs/:id/logs' => 'logs#index'
+  get 'runs/:id/logs' => 'logs#index', :as => 'log_viewer'
 
   #(.html) is added to the route below to force the page to be shown as .html, as the
   #console log controller creates an html file out of the original log file
