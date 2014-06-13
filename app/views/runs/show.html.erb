@@ -40,5 +40,6 @@
   <%= @run.accounts_per_job %>
 </p>
 
+<%= link_to 'Logs', log_viewer_path(@run.id) %> |
 <%= link_to 'Edit', edit_run_path(@run) %> |
 <%= link_to 'Back', runs_path %>
