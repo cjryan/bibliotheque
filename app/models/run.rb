@@ -29,6 +29,7 @@ class Run < ActiveRecord::Base
   end
   belongs_to :rhcbranch
   belongs_to :brokertype
+  belongs_to :status
   has_many :rundockerservers
   has_many :runlogservers
 #  validates :accounts, format: { with: /[\w\d\_\.\+]+\@[\w\d\_\.]+\:\S+\:\w+/, message: "should have the following format: user@domain.com:password:small,"}

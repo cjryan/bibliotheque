@@ -31,12 +31,14 @@ class RunsController < ApplicationController
     params = run_params.clone
     tcms_pass_plaintxt = params[:tcms_password]
     params[:tcms_password] = BCrypt::Password.create(params[:tcms_password])
-
+    # By default run is running :)
+    params["status_id"] = 3
     @run = Run.new(params)
     respond_to do |format|
       if @run.save
         @docker_kickstart = DockerKickstartsController.new(@run, params["rundockerservers_attributes"], tcms_pass_plaintxt)
-        @docker_kickstart.docker_kickstart
+        number_of_containers = @docker_kickstart.docker_kickstart
+        set_run_status(@run[:id], number_of_containers)
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
         format.json { render :show, status: :created, location: @run }
       else
@@ -70,6 +72,41 @@ class RunsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def set_run_status(run_id, global_counter)
+    Thread.new do
+      # Wait for logs to arrive to update the run's status
+      finished = false
+      while not finished do
+        console_logs = Dir.glob(File.join(ENV['OPENSHIFT_DATA_DIR'], 'log_repository', run_id.to_s, "docker_output*"))
+        if console_logs.size < global_counter
+          # There should be as many output files as many containers we had
+          sleep 10
+        else
+          # we need to make sure, the last file was successfully written to
+          sleep 20
+          # Do action
+          fcont = []
+          console_logs.each do |filename|
+            fcont << File.read(filename)
+          end
+          global_exitcode = 0
+          fcont.each do |contents|
+            result = fcont[0].match /exitcode:\s(\d+)/
+            global_exitcode += result.captures[0].to_i
+          end
+          if global_exitcode > 0
+            runstatus = 2 # Failed
+          else
+            runstatus = 1 # Passed
+          end
+          Run.find_by(:id => run_id).update(status_id: runstatus)
+          finished = true
+        end
+      end
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
