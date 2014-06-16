@@ -39,7 +39,7 @@ class DockerKickstartsController < ApplicationController
     end
     return result
   end
-
+  
 
 
   def docker_kickstart
@@ -54,7 +54,8 @@ class DockerKickstartsController < ApplicationController
     if brokertype != 'devenv'
       allaccounts = sharecases(@run.accounts.gsub(",", "").split, @dockerservers_attributes.size)
     end
-    global_counter = 0
+    global_counter = 0 # count total amount of containers: needed for analyzing exit status of all logs
+    dockerserver_index = 0 # count dockerservers: needed for account sharing
     @dockerservers_attributes.each do |key, value|
       docker_opts = {}
       docker_opts['Env'] = []
@@ -81,7 +82,7 @@ class DockerKickstartsController < ApplicationController
         end
         accounts = sharecases(accountarray, value["jobcount"].to_i)
       else
-        accounts = sharecases(allaccounts[global_counter], value["jobcount"].to_i)
+        accounts = sharecases(allaccounts[dockerserver_index], value["jobcount"].to_i)
       end
 #      docker_opts['Cmd'] = ['/bin/bash']
       Docker.url = Dockerserver.find_by(:id => value["dockerserver_id"]).url
@@ -109,8 +110,10 @@ class DockerKickstartsController < ApplicationController
             container.remove
           end
         end
+        global_counter += 1
       end
-      global_counter += 1
+      dockerserver_index += 1
     end
+    return global_counter
   end
 end

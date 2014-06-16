@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613075518) do
+ActiveRecord::Schema.define(version: 20140614120340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,12 @@ ActiveRecord::Schema.define(version: 20140613075518) do
   add_index "runlogservers", ["logserver_id"], name: "index_runlogservers_on_logserver_id", using: :btree
   add_index "runlogservers", ["run_id"], name: "index_runlogservers_on_run_id", using: :btree
 
+  create_table "statuses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "runs", force: true do |t|
     t.string   "broker"
     t.integer  "testrun"
@@ -85,6 +91,7 @@ ActiveRecord::Schema.define(version: 20140613075518) do
     t.string   "tcms_password"
     t.integer  "rhcbranch_id"
     t.integer  "brokertype_id"
+    t.integer  "status_id"
     t.integer  "accounts_per_job"
     t.integer  "logserver_id"
     t.datetime "created_at"
@@ -95,5 +102,7 @@ ActiveRecord::Schema.define(version: 20140613075518) do
   add_index "runs", ["brokertype_id"], name: "index_runs_on_brokertype_id", using: :btree
   add_index "runs", ["logserver_id"], name: "index_runs_on_logserver_id", using: :btree
   add_index "runs", ["rhcbranch_id"], name: "index_runs_on_rhcbranch_id", using: :btree
+  add_index "runs", ["status_id"], name: "index_runs_on_status_id", using: :btree
+
 
 end

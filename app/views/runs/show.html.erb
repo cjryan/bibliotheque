@@ -1,6 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Status:</strong>
+  <% if @run.status_id == 3%>
+    <span color="cyan"><%= Status.find_by(:id => @run.status_id).name %></span>
+  <% elsif @run.status_id == 2%>
+    <span color="red"><%= Status.find_by(:id => @run.status_id).name %></span>
+  <% else%>
+    <span color="green"><%= Status.find_by(:id => @run.status_id).name %></span>
+  <% end%>
+</p>
+
+<p>
   <strong>Broker:</strong>
   <%= @run.broker %>
 </p>
@@ -26,23 +37,13 @@
 </p>
 
 <p>
-  <strong>Tcms user:</strong>
-  <%= @run.tcms_user %>
-</p>
-
-<p>
-  <strong>Tcms password:</strong>
-  <%= @run.tcms_password %>
-</p>
-
-<p>
   <strong>Rhcbranch:</strong>
-  <%= @run.rhcbranch %>
+  <%= Rhcbranch.find_by(:id => @run.rhcbranch.id).name %>
 </p>
 
 <p>
   <strong>Brokertype:</strong>
-  <%= @run.brokertype %>
+  <%= Brokertype.find_by(:id => @run.brokertype.id).name %>
 </p>
 
 <p>
@@ -50,5 +51,6 @@
   <%= @run.accounts_per_job %>
 </p>
 
+<%= link_to 'Logs', log_viewer_path(@run.id) %> |
 <%= link_to 'Edit', edit_run_path(@run) %> |
 <%= link_to 'Back', runs_path %>
