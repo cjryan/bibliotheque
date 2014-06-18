@@ -3,11 +3,11 @@
 <p>
   <strong>Status:</strong>
   <% if @run.status_id == 3%>
-    <span color="cyan"><%= Status.find_by(:id => @run.status_id).name %></span>
+    <span style="color:cyan;"><%= Status.find_by(:id => @run.status_id).name %></span>
   <% elsif @run.status_id == 2%>
-    <span color="red"><%= Status.find_by(:id => @run.status_id).name %></span>
+    <span style="color:red;"><%= Status.find_by(:id => @run.status_id).name %></span>
   <% else%>
-    <span color="green"><%= Status.find_by(:id => @run.status_id).name %></span>
+    <span style="color:green;"><%= Status.find_by(:id => @run.status_id).name %></span>
   <% end%>
 </p>
 
