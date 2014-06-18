@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 20140614120340) do
 
   add_index "images", ["dockerserver_id"], name: "index_images_on_dockerserver_id", using: :btree
 
-  create_table "logservers", force: true do |t|
-    t.string   "hostname"
-    t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+#  create_table "logservers", force: true do |t|
+#    t.string   "hostname"
+#    t.string   "username"
+#    t.datetime "created_at"
+#    t.datetime "updated_at"
+#  end
 
   create_table "rhcbranches", force: true do |t|
     t.string   "name"
@@ -65,15 +65,15 @@ ActiveRecord::Schema.define(version: 20140614120340) do
   add_index "rundockerservers", ["image_id"], name: "index_rundockerservers_on_image_id", using: :btree
   add_index "rundockerservers", ["run_id"], name: "index_rundockerservers_on_run_id", using: :btree
 
-  create_table "runlogservers", force: true do |t|
-    t.integer  "run_id"
-    t.integer  "logserver_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+#  create_table "runlogservers", force: true do |t|
+#    t.integer  "run_id"
+#    t.integer  "logserver_id"
+#    t.datetime "created_at"
+#    t.datetime "updated_at"
+#  end
 
-  add_index "runlogservers", ["logserver_id"], name: "index_runlogservers_on_logserver_id", using: :btree
-  add_index "runlogservers", ["run_id"], name: "index_runlogservers_on_run_id", using: :btree
+#  add_index "runlogservers", ["logserver_id"], name: "index_runlogservers_on_logserver_id", using: :btree
+#  add_index "runlogservers", ["run_id"], name: "index_runlogservers_on_run_id", using: :btree
 
   create_table "statuses", force: true do |t|
     t.string   "name"
@@ -93,14 +93,14 @@ ActiveRecord::Schema.define(version: 20140614120340) do
     t.integer  "brokertype_id"
     t.integer  "status_id"
     t.integer  "accounts_per_job"
-    t.integer  "logserver_id"
+#    t.integer  "logserver_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "debug"
   end
 
   add_index "runs", ["brokertype_id"], name: "index_runs_on_brokertype_id", using: :btree
-  add_index "runs", ["logserver_id"], name: "index_runs_on_logserver_id", using: :btree
+#  add_index "runs", ["logserver_id"], name: "index_runs_on_logserver_id", using: :btree
   add_index "runs", ["rhcbranch_id"], name: "index_runs_on_rhcbranch_id", using: :btree
   add_index "runs", ["status_id"], name: "index_runs_on_status_id", using: :btree
 

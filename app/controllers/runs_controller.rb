@@ -67,6 +67,7 @@ class RunsController < ApplicationController
   # DELETE /runs/1.json
   def destroy
     @run.destroy
+    FileUtils.rm_rf(File.join(ENV['OPENSHIFT_DATA_DIR'], 'log_repository', @run[:id].to_s))
     respond_to do |format|
       format.html { redirect_to runs_url, notice: 'Run was successfully destroyed.' }
       format.json { head :no_content }
@@ -116,6 +117,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :logserver_id, :debug, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
+      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :debug, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
     end
 end
