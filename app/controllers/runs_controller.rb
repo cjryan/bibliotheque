@@ -67,6 +67,7 @@ class RunsController < ApplicationController
   # DELETE /runs/1.json
   def destroy
     @run.destroy
+    FileUtils.rm_rf(File.join(ENV['OPENSHIFT_DATA_DIR'], 'log_repository', @run[:id].to_s))
     respond_to do |format|
       format.html { redirect_to runs_url, notice: 'Run was successfully destroyed.' }
       format.json { head :no_content }
