@@ -22,11 +22,11 @@
         <td><%= run.caseruns %></td>
         <td><%= run.accounts_per_job %></td>
         <% if run.status_id == 3%>
-          <td><span class="cyan"><%= Status.find_by(:id => run.status_id).name %></span></td>
+          <td><span style="color:cyan;"><%= Status.find_by(:id => run.status_id).name %></span></td>
         <% elsif run.status_id == 2%>
-          <td><span class="red"><%= Status.find_by(:id => run.status_id).name %></span></td>
+          <td><span style="color:red;"><%= Status.find_by(:id => run.status_id).name %></span></td>
         <% else %>
-          <td><span class="green"><%= Status.find_by(:id => run.status_id).name %></span></td>
+          <td><span style="color:green;"><%= Status.find_by(:id => run.status_id).name %></span></td>
         <% end%>
         <td><%= link_to 'Logs', log_viewer_path(run.id) %></td>
         <td><%= link_to 'Show', run %></td>
