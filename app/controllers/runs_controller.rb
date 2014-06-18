@@ -116,6 +116,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :logserver_id, :debug, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
+      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :debug, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
     end
 end

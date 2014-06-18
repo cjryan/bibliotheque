@@ -62,10 +62,6 @@
     <% end %>
     <%= link_to_add_dockerserver "Add new docker server", f, :rundockerservers %>
   </div>
-  <div class="field">
-    <%= f.label :logserver_id %><br>
-    <%= f.collection_select(:logserver_id, Logserver.all, :id, :hostname, include_blank: false) %>
-  </div>
   <div class="actions">
     <%= f.submit "Create Run", class: 'btn btn-primary btn-medium' %>
   </div>

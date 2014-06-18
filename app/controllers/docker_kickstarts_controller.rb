@@ -49,8 +49,8 @@ class DockerKickstartsController < ApplicationController
     #based on an image id specified for each particular server
     rhcbranch = Rhcbranch.find_by(:id => @run.rhcbranch_id).name
     brokertype = Brokertype.find_by(:id => @run.brokertype_id).name
-    logserver = Logserver.find_by(:id => @run.logserver_id).hostname
-    logserver_username = Logserver.find_by(:id => @run.logserver_id).username
+#    logserver = Logserver.find_by(:id => @run.logserver_id).hostname
+#    logserver_username = Logserver.find_by(:id => @run.logserver_id).username
     if brokertype != 'devenv'
       allaccounts = sharecases(@run.accounts.gsub(",", "").split, @dockerservers_attributes.size)
     end
@@ -72,8 +72,11 @@ class DockerKickstartsController < ApplicationController
       docker_opts['Env'] << "CASERUN_IDS=#{@run.caseruns}"
       docker_opts['Env'] << "DOCKER_RUN_ID=#{@run.id}"
       docker_opts['Image'] = value["image_id"]
-      docker_opts['Env'] << "LOG_SERVER=#{logserver}"
-      docker_opts['Env'] << "LOG_SERVER_USERNAME=#{logserver_username}"
+      docker_opts['Env'] << "LOG_SERVER=#{ENV['OPENSHIFT_GEAR_DNS']}"
+      docker_opts['Env'] << "LOG_SERVER_USERNAME=#{'OPENSHIFT_APP_UUID'}"
+
+#      docker_opts['Env'] << "LOG_SERVER=#{logserver}"
+#      docker_opts['Env'] << "LOG_SERVER_USERNAME=#{logserver_username}"
       docker_opts['Cmd'] = ['sh','bin/docker_runner.sh']
       if brokertype == 'devenv'
         accountarray = []
