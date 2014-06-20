@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :operators
   resources :runs
 
   resources :rundockerservers

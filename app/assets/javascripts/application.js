@@ -17,10 +17,10 @@
 //= require jquery_nested_form
 //
 function remove_dockerserver(link) {
-  console.log(link)
-  console.log($(link).prev())
-  $(link).prev().value = "true";
-  $(link).parent(".dockerserver").hide();
+// console.log(link)
+//  console.log($(link).parent().parent())
+  $(link).parent().parent(".dockerserver").hide();
+  $(link).parentNode.style.display = "none"
 }
 
 function add_fields(link, association, content) {
