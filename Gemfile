@@ -36,6 +36,7 @@ gem 'debugger'
 
 #Use docker for CucuShift runs
 gem 'docker-api'
+gem 'devise'
 
 #gem 'activerecord-postgres-array'
 # Use ActiveModel has_secure_password
