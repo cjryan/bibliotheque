@@ -10,6 +10,7 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
+  host: <%=ENV['OPENSHIFT_POSTGRESQL_DB_HOST']%>
   username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
   password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
 
