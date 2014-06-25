@@ -74,7 +74,11 @@ class DockerKickstartsController < ApplicationController
       docker_opts['Image'] = value["image_id"]
       docker_opts['Env'] << "LOG_SERVER=#{ENV['OPENSHIFT_GEAR_DNS']}"
       docker_opts['Env'] << "LOG_SERVER_USERNAME=#{ENV['OPENSHIFT_APP_UUID']}"
-      docker_opts['Env'] << "SSH_PORT=#{ENV['SSH_PORT']}"
+      if ENV['SSH_PORT']
+        docker_opts['Env'] << "SSH_PORT=#{ENV['SSH_PORT']}"
+      else
+        docker_opts['Env'] << "SSH_PORT=22"
+      end
 #      docker_opts['Env'] << "LOG_SERVER=#{logserver}"
 #      docker_opts['Env'] << "LOG_SERVER_USERNAME=#{logserver_username}"
       docker_opts['Cmd'] = ['sh','bin/docker_runner.sh']
