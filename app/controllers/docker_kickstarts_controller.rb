@@ -79,6 +79,9 @@ class DockerKickstartsController < ApplicationController
       else
         docker_opts['Env'] << "SSH_PORT=22"
       end
+      if @run.noadmin == true
+        docker_opts['Env'] << "CUCUSHIFT_NOADMIN=true"
+      end
 #      docker_opts['Env'] << "LOG_SERVER=#{logserver}"
 #      docker_opts['Env'] << "LOG_SERVER_USERNAME=#{logserver_username}"
       docker_opts['Cmd'] = ['sh','bin/docker_runner.sh']

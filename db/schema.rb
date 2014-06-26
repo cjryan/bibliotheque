@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620113918) do
+ActiveRecord::Schema.define(version: 20140626113415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20140620113918) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "debug"
+    t.boolean  "noadmin"
   end
 
   add_index "runs", ["brokertype_id"], name: "index_runs_on_brokertype_id", using: :btree

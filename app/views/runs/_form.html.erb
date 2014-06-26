@@ -55,7 +55,10 @@
     <%= f.label :debug %><br>
     <%= f.check_box :debug %>
   </div>
-
+  <div class="field">
+    <%= f.label :noadmin %><br>
+    <%= f.check_box :noadmin %>
+  </div>
   <div class="serverlist">
     <%= f.fields_for :rundockerservers do |builder| %>
       <%= render "dockerserver_fields", :f => builder %>

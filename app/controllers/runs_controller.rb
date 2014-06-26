@@ -76,7 +76,7 @@ class RunsController < ApplicationController
   end
 
   def set_run_status(run_id, global_counter)
-    Thread.new do
+    thr = Thread.new do
       # Wait for logs to arrive to update the run's status
       finished = false
       while not finished do
@@ -94,7 +94,7 @@ class RunsController < ApplicationController
           end
           global_exitcode = 0
           fcont.each do |contents|
-            result = fcont[0].match /exitcode:\s(\d+)/
+            result = contents.match /exitcode:\s(\d+)/
             global_exitcode += result.captures[0].to_i
           end
           if global_exitcode > 0
@@ -107,6 +107,7 @@ class RunsController < ApplicationController
         end
       end
     end
+    Thread.kill(thr)
   end
 
 
@@ -118,6 +119,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :debug, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
+      params.require(:run).permit(:broker, :testrun, :caseruns, :accounts, :maxgears, :tcms_user, :tcms_password, :rhcbranch_id, :brokertype_id, :accounts_per_job, :debug, :noadmin, :rundockerservers_attributes => [:run_id, :dockerserver_id, :image_id, :jobcount])
     end
 end
