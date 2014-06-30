@@ -26,7 +26,7 @@ class LogsController < ApplicationController
       send_file(params[:file], :disposition => 'inline', :type => "html")
   end
   def display_console_logs
-    colorized_log = htmlify(params[:console_file])
+    colorized_log = htmlify(URI.decode(params[:console_file]))
     send_data(colorized_log, :disposition => 'inline', :type => "html")
   end
   def htmlify(file_to_decode)
