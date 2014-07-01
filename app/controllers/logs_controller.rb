@@ -23,11 +23,11 @@ class LogsController < ApplicationController
   end
   def display_html_logs
       params[:file] = params[:file] + ".html"
-      send_file(params[:file], :disposition => 'inline', :type => "html")
+      send_file(params[:file], :disposition => 'inline', :type => "text/html")
   end
   def display_console_logs
     colorized_log = htmlify(URI.decode(params[:console_file]))
-    send_data(colorized_log, :disposition => 'inline', :type => "html")
+    send_data(colorized_log, :disposition => 'inline', :type => "text/html")
   end
   def htmlify(file_to_decode)
     #The ansi codes are the escape codes for bash to output color and styling.
