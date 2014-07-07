@@ -76,7 +76,7 @@ class RunsController < ApplicationController
   end
 
   def set_run_status(run_id, global_counter)
-    thr = Thread.new do
+    fork do
       # Wait for logs to arrive to update the run's status
       finished = false
       while not finished do
@@ -107,7 +107,6 @@ class RunsController < ApplicationController
         end
       end
     end
-    Thread.kill(thr)
   end
 
 
